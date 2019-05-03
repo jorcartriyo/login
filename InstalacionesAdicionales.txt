@@ -1,0 +1,47 @@
+Para el navigation:
+npm install --save react-navigation
+npm install --save react-native-gesture-handler@~1.0.14
+react-native link react-native-gesture-handler
+
+Para finalizar la instalación del gestor de gestos nativos reactivos para Android, asegúrese de realizar las modificaciones
+necesarias para MainActivity.java:
+
+import com.facebook.react.ReactActivity;
++ import com.facebook.react.ReactActivityDelegate;
++ import com.facebook.react.ReactRootView;
++ import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
+
+public class MainActivity extends ReactActivity {
+
+  @Override
+  protected String getMainComponentName() {
+    return "Example";
+  }
+
++  @Override
++  protected ReactActivityDelegate createReactActivityDelegate() {
++    return new ReactActivityDelegate(this, getMainComponentName()) {
++      @Override
++      protected ReactRootView createRootView() {
++       return new RNGestureHandlerEnabledRootView(MainActivity.this);
++      }
++    };
++  }
+}
+
+Solucionar Async:
+
+# Install
+$ yarn add @react-native-community/async-storage
+
+# Link
+$ react-native link @react-native-community/async-storage
+
+import AsyncStorage from '@react-native-community/async-storage';
+
+para los iconos:
+
+npm install react-native-vector-icons --save
+
+Editar android/app/build.gradle (No el de la raiz ) y añadir:
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
